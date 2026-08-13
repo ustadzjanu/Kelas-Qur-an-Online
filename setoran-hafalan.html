@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setoran Hafalan Juz 'Amma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+  :root{
+    --ink:#1B3A34; --ink-soft:#35564E; --bg:#F3E9D2; --bg-soft:#EEE2C4;
+    --card:#FFFDF7; --border:#D9CBA3; --gold:#A9812E; --gold-light:#D9BE7C;
+    --green:#4C7A50; --green-bg:#E3EDDD; --terracotta:#A64B3A; --terracotta-bg:#F2DFD9;
+    --neutral:#8C8567; --neutral-bg:#EDE6D3;
+    --font-display:'Amiri', serif; --font-body:'Inter', sans-serif; --font-mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);background-image:radial-gradient(circle at 1px 1px, rgba(169,129,46,0.10) 1px, transparent 0);background-size:22px 22px;color:var(--ink);font-family:var(--font-body);line-height:1.5;padding:28px 16px 80px;}
+  a{color:var(--gold);}
+  .wrap{max-width:880px;margin:0 auto;}
+  .frame{border:1px solid var(--border);outline:1px solid var(--border);outline-offset:5px;border-radius:2px;padding:36px 28px;background:rgba(255,253,247,0.35);}
+  header{text-align:center;margin-bottom:8px;}
+  .bismillah{font-family:var(--font-display);font-style:italic;color:var(--gold);font-size:15px;letter-spacing:0.04em;margin-bottom:6px;}
+  h1{font-family:var(--font-display);font-weight:700;font-size:34px;margin:0 0 6px;color:var(--ink);}
+  .subtitle{font-size:14px;color:var(--ink-soft);max-width:520px;margin:0 auto;}
+  .divider{text-align:center;color:var(--gold);margin:20px 0 26px;font-size:13px;letter-spacing:0.3em;}
+  .links-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:8px;}
+  .link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);text-decoration:none;padding:10px 16px;border-radius:3px;font-size:13px;font-weight:500;letter-spacing:0.01em;transition:background .15s ease;border:none;cursor:pointer;}
+  .link-btn:hover{background:var(--ink-soft);}
+  .link-btn.alt{background:var(--gold);color:#2A2110;}
+  .link-btn.alt:hover{background:#93711F;}
+  .account-row{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap;}
+  .account-status{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);}
+  section{margin-top:44px;}
+  .section-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  h2{font-family:var(--font-display);font-size:23px;margin:0 0 16px;color:var(--ink);}
+  .rules{counter-reset:rule;list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;}
+  .rules li{counter-increment:rule;position:relative;padding-left:38px;font-size:14.5px;color:var(--ink-soft);}
+  .rules li::before{content:counter(rule);position:absolute;left:0;top:-1px;font-family:var(--font-mono);font-size:12px;width:24px;height:24px;border:1px solid var(--gold);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .rules b{color:var(--ink);}
+  .note-box{margin-top:16px;background:var(--bg-soft);border-left:3px solid var(--gold);padding:12px 16px;font-size:13.5px;color:var(--ink-soft);border-radius:2px;}
+  .countdown{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);margin-top:10px;text-align:center;}
+  .countdown b{color:var(--terracotta);}
+  .progress-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 18px 16px;margin-bottom:14px;}
+  .progress-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .progress-head .name{font-weight:600;font-size:15px;}
+  .progress-head .current{font-family:var(--font-mono);font-size:12px;color:var(--gold);}
+  .beads{display:flex;flex-wrap:wrap;gap:5px;}
+  .bead{width:13px;height:13px;border-radius:50%;border:1.4px solid var(--gold-light);background:transparent;cursor:pointer;position:relative;}
+  .bead.done{background:var(--green);border-color:var(--green);}
+  .bead.current{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 3px rgba(169,129,46,0.25);}
+  .bead:hover::after{content:attr(data-label);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:3px 7px;border-radius:3px;font-size:11px;white-space:nowrap;font-family:var(--font-body);z-index:5;}
+  .free-tag{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);background:var(--neutral-bg);padding:4px 10px;border-radius:20px;display:inline-block;}
+  .participant-manage{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  input[type=text],input[type=url],input[type=password],select,textarea{font-family:var(--font-body);border:1px solid var(--border);background:var(--card);border-radius:3px;padding:7px 9px;font-size:13px;color:var(--ink);}
+  button{font-family:var(--font-body);cursor:pointer;border:none;border-radius:3px;padding:8px 14px;font-size:13px;font-weight:600;background:var(--ink);color:var(--bg);}
+  button:hover{background:var(--ink-soft);}
+  button.ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--border);font-weight:500;}
+  button:disabled{opacity:.45;cursor:not-allowed;}
+  .week-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .week-bar select{flex:1;min-width:180px;}
+  .spread{display:grid;grid-template-columns:1fr;gap:14px;}
+  .entry-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;transition:background .2s ease, border-color .2s ease;}
+  .entry-card.status-lulus{background:var(--green-bg);border-color:var(--green);}
+  .entry-card.status-revisi{background:var(--terracotta-bg);border-color:var(--terracotta);}
+  .entry-card.status-menunggu{background:var(--card);}
+  .entry-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+  .entry-top .pname{font-weight:600;font-size:14.5px;}
+  .badge{font-family:var(--font-mono);font-size:11px;padding:3px 9px;border-radius:20px;letter-spacing:0.03em;}
+  .badge.lulus{background:var(--green);color:#fff;}
+  .badge.revisi{background:var(--terracotta);color:#fff;}
+  .badge.menunggu{background:var(--neutral);color:#fff;}
+  .entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .entry-grid .full{grid-column:1/-1;}
+  .field label{display:block;font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);margin-bottom:4px;}
+  .field input,.field select,.field textarea{width:100%;}
+  textarea{resize:vertical;min-height:44px;}
+  .upload-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .upload-row input[type=file]{font-size:12px;max-width:150px;}
+  .upload-status{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);}
+  .entry-actions{margin-top:10px;display:flex;justify-content:flex-end;align-items:center;gap:8px;}
+  .save-hint{font-family:var(--font-mono);font-size:11px;color:var(--green);align-self:center;opacity:0;transition:opacity .3s ease;}
+  .save-hint.show{opacity:1;}
+  details.settings{margin-top:44px;border:1px dashed var(--border);border-radius:4px;padding:14px 18px;background:rgba(255,253,247,.4);}
+  details.settings summary{cursor:pointer;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);}
+  .settings-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
+  .settings-grid label{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);display:block;margin-bottom:3px;}
+  .settings-grid input{width:100%;}
+  .settings-hint{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+  footer{text-align:center;margin-top:52px;font-family:var(--font-display);font-style:italic;color:var(--ink-soft);font-size:15px;}
+  .loading{text-align:center;font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);padding:20px;}
+  @media (max-width:520px){.frame{padding:24px 16px;}h1{font-size:27px;}.entry-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="frame">
+    <header>
+      <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <h1>Setoran Hafalan Juz 'Amma</h1>
+      <p class="subtitle">Ruang kerja kajian — setoran rekaman, ceklist koreksi, dan progres hafalan bersama.</p>
+    </header>
+    <div class="divider">✦ ⟡ ✦</div>
+
+    <div class="links-row">
+      <a class="link-btn" href="https://drive.google.com/drive/folders/1FN7iQxryxj-ETpxk-OQKdUgtXjxkpktH?usp=drive_link" target="_blank" rel="noopener">📁 Buka Folder Rekaman</a>
+      <a class="link-btn alt" href="https://docs.google.com/spreadsheets/d/14Sqj43AWeN4gQlLy20VDoq5HtHPYGnEDRSkfM3i3OHc/edit?usp=sharing" target="_blank" rel="noopener">📋 Buka Spreadsheet</a>
+    </div>
+    <div class="account-row">
+      <button class="link-btn" id="loginBtn">🔐 Login dengan Google</button>
+      <span class="account-status" id="loginStatus">belum login — perlu login untuk upload rekaman</span>
+    </div>
+    <div class="countdown" id="countdown"></div>
+
+    <section>
+      <div class="section-eyebrow">Panduan</div>
+      <h2>Ketentuan Setoran</h2>
+      <ol class="rules">
+        <li><b>Setoran rekaman suara</b> (membaca surat Juz 30) dikumpulkan setiap <b>Sabtu–Ahad, paling lambat pukul 23.59</b>.</li>
+        <li><b>Format bacaan:</b> surat Adh-Dhuha s.d. An-Naas — 1 halaman. Untuk surat sebelum Adh-Dhuha — 2 s.d. 8 baris (setengah halaman), menyesuaikan waqof sampai ayat selesai.</li>
+        <li>Rekaman <b>suara</b> diupload ke folder Google Drive di atas (bisa lewat tombol upload di kartu peserta setelah login, atau manual lewat tombol "Buka Folder Rekaman").</li>
+        <li>Setelah upload, isi <b>ceklist</b> — otomatis tersinkron ke spreadsheet asli bila pengaturan sudah aktif (lihat ⚙ Pengaturan di bawah).</li>
+        <li>Koreksi oleh Pak Ustadz dilakukan <b>Senin–Selasa</b>. Jika <span style="color:var(--green);font-weight:600;">lulus</span>, baris otomatis diberi warna hijau di spreadsheet. Jika ada koreksi, catatan ditulis di kolom keterangan dan rekaman koreksi ditautkan pada folder rekaman suara.</li>
+        <li><b>Rekaman video</b> diupload pada folder yang sama (folder rekaman video).</li>
+        <li>Kajian online setiap <b>Jumat</b> bertujuan untuk validasi hafalan dari rekaman video, serta murojaah (mengulang) bacaan yang sudah dihafal sebelumnya.</li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="section-eyebrow">Juz 30 · An-Naba → An-Naas</div>
+      <h2>Progres Hafalan</h2>
+      <div id="progressList" class="loading">Memuat data peserta…</div>
+      <div class="participant-manage">
+        <input type="text" id="newName" placeholder="Nama peserta baru">
+        <select id="newSurah"></select>
+        <button id="addParticipant" class="ghost">+ Tambah peserta</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-eyebrow">Sabtu–Ahad</div>
+      <h2>Ceklist Setoran Mingguan</h2>
+      <div class="week-bar">
+        <select id="weekSelect"></select>
+        <button id="addWeek" class="ghost">+ Minggu baru</button>
+      </div>
+      <div id="spread" class="loading">Memuat ceklist…</div>
+    </section>
+
+    <details class="settings">
+      <summary>⚙ Pengaturan integrasi (Apps Script &amp; Login Google) — isi sekali oleh admin</summary>
+      <div class="settings-grid">
+        <div>
+          <label>URL Web App Apps Script (untuk sinkron ke Spreadsheet)</label>
+          <input type="text" id="cfgAppsScript" placeholder="https://script.google.com/macros/s/xxxxx/exec">
+        </div>
+        <div>
+          <label>Google OAuth Client ID (untuk login &amp; upload ke Drive)</label>
+          <input type="text" id="cfgClientId" placeholder="xxxxxxxxxx.apps.googleusercontent.com">
+        </div>
+        <div>
+          <label>ID Folder Drive tujuan upload</label>
+          <input type="text" id="cfgFolderId" value="1FN7iQxryxj-ETpxk-OQKdUgtXjxkpktH">
+        </div>
+        <button id="saveConfig" class="ghost" style="width:fit-content;">Simpan pengaturan</button>
+        <p class="settings-hint">Pengaturan ini disimpan untuk semua orang yang membuka halaman ini. Tanpa Apps Script URL, ceklist hanya tersimpan lokal di halaman ini (tidak sinkron ke spreadsheet). Tanpa Client ID, upload rekaman lewat website tidak bisa dipakai — peserta tetap bisa upload manual lewat tombol "Buka Folder Rekaman".</p>
+      </div>
+    </details>
+
+    <footer>Semoga dimudahkan oleh Allah Subhānahu wa Ta'ālā, aamiin ya Rabbal 'Ālamīn</footer>
+  </div>
+</div>
+
+<script>
+const JUZ30 = [
+  {no:78,name:"An-Naba"},{no:79,name:"An-Nazi'at"},{no:80,name:"'Abasa"},{no:81,name:"At-Takwir"},
+  {no:82,name:"Al-Infitar"},{no:83,name:"Al-Mutaffifin"},{no:84,name:"Al-Insyiqaq"},{no:85,name:"Al-Buruj"},
+  {no:86,name:"At-Tariq"},{no:87,name:"Al-A'la"},{no:88,name:"Al-Ghasyiyah"},{no:89,name:"Al-Fajr"},
+  {no:90,name:"Al-Balad"},{no:91,name:"Asy-Syams"},{no:92,name:"Al-Lail"},{no:93,name:"Adh-Dhuha"},
+  {no:94,name:"Al-Insyirah"},{no:95,name:"At-Tin"},{no:96,name:"Al-'Alaq"},{no:97,name:"Al-Qadr"},
+  {no:98,name:"Al-Bayyinah"},{no:99,name:"Az-Zalzalah"},{no:100,name:"Al-'Adiyat"},{no:101,name:"Al-Qari'ah"},
+  {no:102,name:"At-Takatsur"},{no:103,name:"Al-'Asr"},{no:104,name:"Al-Humazah"},{no:105,name:"Al-Fil"},
+  {no:106,name:"Quraisy"},{no:107,name:"Al-Ma'un"},{no:108,name:"Al-Kautsar"},{no:109,name:"Al-Kafirun"},
+  {no:110,name:"An-Nasr"},{no:111,name:"Al-Lahab"},{no:112,name:"Al-Ikhlas"},{no:113,name:"Al-Falaq"},
+  {no:114,name:"An-Naas"}
+];
+const surahName = i => i===null||i===undefined ? "Bebas" : `${JUZ30[i].no}. ${JUZ30[i].name}`;
+const idx = name => JUZ30.findIndex(s=>s.name===name);
+
+const DEFAULT_PARTICIPANTS = [
+  {id:"p_saya",  name:"Saya (Pemandu)", currentSurahIndex: idx("Al-Insyiqaq")},
+  {id:"p_frandi",name:"Frandi",          currentSurahIndex: idx("Al-Buruj")},
+  {id:"p_andre", name:"Andre",           currentSurahIndex: idx("An-Naas")},
+  {id:"p_romani",name:"Romani",          currentSurahIndex: idx("Al-'Alaq")},
+  {id:"p_dion",  name:"Pak Dion",        currentSurahIndex: null},
+];
+
+let participants = [];
+let weeks = [];
+let currentWeekId = null;
+let weekEntries = {};
+let config = { appsScriptUrl:'', clientId:'', folderId:'1FN7iQxryxj-ETpxk-OQKdUgtXjxkpktH' };
+let tokenClient = null;
+let accessToken = null;
+
+async function storageGet(key, shared){
+  try{ const r = await window.storage.get(key, shared); return r ? JSON.parse(r.value) : null; }
+  catch(e){ return null; }
+}
+async function storageSet(key, value, shared){
+  try{ await window.storage.set(key, JSON.stringify(value), shared); return true; }
+  catch(e){ console.error("Gagal menyimpan", key, e); return false; }
+}
+
+function populateSurahSelect(sel){
+  sel.innerHTML = '<option value="">Bebas / Murojaah</option>' +
+    JUZ30.map((s,i)=>`<option value="${i}">${s.no}. ${s.name}</option>`).join("");
+}
+
+function saturdaySundayLabel(offsetWeeks=0){
+  const now = new Date();
+  const day = now.getDay();
+  const diffToSat = (6 - day + 7) % 7;
+  const sat = new Date(now); sat.setDate(now.getDate() + diffToSat + offsetWeeks*7);
+  const sun = new Date(sat); sun.setDate(sat.getDate()+1);
+  const fmt = d => d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
+  return `${fmt(sat)} - ${fmt(sun)}`;
+}
+
+function renderCountdown(){
+  const now = new Date();
+  const day = now.getDay();
+  const el = document.getElementById('countdown');
+  if(day===0){
+    el.innerHTML = `Batas setoran minggu ini: <b>hari ini, 23.59</b>`;
+  } else {
+    const daysLeft = (0 - day + 7) % 7;
+    el.innerHTML = `Batas setoran minggu ini: Ahad · <b>${daysLeft} hari lagi</b>`;
+  }
+}
+
+function renderProgress(){
+  const wrap = document.getElementById('progressList');
+  wrap.classList.remove('loading');
+  wrap.innerHTML = participants.map(p=>{
+    if(p.currentSurahIndex===null || p.currentSurahIndex===undefined){
+      return `<div class="progress-card">
+        <div class="progress-head"><span class="name">${p.name}</span><span class="free-tag">Bebas · murojaah</span></div>
+      </div>`;
+    }
+    const beads = JUZ30.map((s,i)=>{
+      let cls = 'bead';
+      if(i < p.currentSurahIndex) cls += ' done';
+      else if(i === p.currentSurahIndex) cls += ' current';
+      return `<span class="${cls}" data-label="${s.no}. ${s.name}" data-p="${p.id}" data-i="${i}"></span>`;
+    }).join("");
+    return `<div class="progress-card">
+      <div class="progress-head"><span class="name">${p.name}</span><span class="current">Sedang: ${surahName(p.currentSurahIndex)}</span></div>
+      <div class="beads">${beads}</div>
+    </div>`;
+  }).join("");
+  wrap.querySelectorAll('.bead').forEach(b=>{
+    b.addEventListener('click', async ()=>{
+      const p = participants.find(x=>x.id===b.dataset.p);
+      p.currentSurahIndex = parseInt(b.dataset.i,10);
+      renderProgress();
+      await storageSet('participants', participants, true);
+    });
+  });
+}
+
+function renderWeekSelect(){
+  const sel = document.getElementById('weekSelect');
+  sel.innerHTML = weeks.map(w=>`<option value="${w.id}">${w.label}</option>`).join("");
+  if(currentWeekId) sel.value = currentWeekId;
+}
+
+function currentWeekObj(){ return weeks.find(w=>w.id===currentWeekId); }
+
+async function loadWeekEntries(weekId){
+  const w = weeks.find(x=>x.id===weekId);
+  if(config.appsScriptUrl){
+    try{
+      const res = await fetch(`${config.appsScriptUrl}?week=${encodeURIComponent(w.label)}`);
+      const data = await res.json();
+      weekEntries = {};
+      (data.rows||[]).forEach(r=>{ weekEntries[r.participantId] = { surah:r.surah, status:r.status, keterangan:r.keterangan, link:r.link }; });
+      return;
+    }catch(e){ console.error('Gagal ambil data dari Apps Script, pakai data lokal.', e); }
+  }
+  weekEntries = await storageGet(`week-entries:${weekId}`, true) || {};
+}
+
+async function saveEntry(pid, nama, entry){
+  const w = currentWeekObj();
+  if(config.appsScriptUrl){
+    try{
+      await fetch(config.appsScriptUrl, {
+        method:'POST',
+        headers:{ 'Content-Type':'text/plain;charset=utf-8' },
+        body: JSON.stringify({ minggu:w.label, participantId:pid, nama, ...entry })
+      });
+      return true;
+    }catch(e){ console.error('Gagal sinkron ke spreadsheet, disimpan lokal saja.', e); }
+  }
+  weekEntries[pid] = entry;
+  await storageSet(`week-entries:${currentWeekId}`, weekEntries, true);
+  return true;
+}
+
+function statusClass(status){
+  if(status==='Lulus') return 'lulus';
+  if(status==='Perlu Revisi') return 'revisi';
+  return 'menunggu';
+}
+
+function renderSpread(){
+  const wrap = document.getElementById('spread');
+  wrap.classList.remove('loading');
+  if(!currentWeekId){ wrap.innerHTML = `<div class="loading">Belum ada minggu. Klik "+ Minggu baru" untuk mulai.</div>`; return; }
+  wrap.innerHTML = participants.map(p=>{
+    const e = weekEntries[p.id] || {surah:'', status:'Menunggu', keterangan:'', link:''};
+    const sc = statusClass(e.status);
+    const canUpload = !!accessToken;
+    return `<div class="entry-card status-${sc}" data-p="${p.id}" data-name="${p.name}">
+      <div class="entry-top">
+        <span class="pname">${p.name}</span>
+        <span class="badge ${sc}">${e.status || 'Menunggu'}</span>
+      </div>
+      <div class="entry-grid">
+        <div class="field full">
+          <label>Surat yang disetorkan</label>
+          <input type="text" class="f-surah" value="${(e.surah||'').replace(/"/g,'&quot;')}" placeholder="mis. Al-Insyiqaq ayat 1-10">
+        </div>
+        <div class="field">
+          <label>Status koreksi</label>
+          <select class="f-status">
+            <option ${(!e.status||e.status==='Menunggu')?'selected':''}>Menunggu</option>
+            <option ${e.status==='Lulus'?'selected':''}>Lulus</option>
+            <option ${e.status==='Perlu Revisi'?'selected':''}>Perlu Revisi</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Link rekaman (otomatis terisi setelah upload)</label>
+          <input type="url" class="f-link" value="${e.link || ''}" placeholder="link Drive">
+        </div>
+        <div class="field full">
+          <label>Keterangan</label>
+          <textarea class="f-ket" placeholder="Catatan koreksi dari Pak Ustadz…">${e.keterangan || ''}</textarea>
+        </div>
+        <div class="field full">
+          <label>Upload rekaman ke Drive ${canUpload ? '' : '(login dulu untuk mengaktifkan)'}</label>
+          <div class="upload-row">
+            <input type="file" class="f-file" accept="audio/*,video/*" ${canUpload?'':'disabled'}>
+            <button class="btn-upload ghost" ${canUpload?'':'disabled'}>Upload ke Drive</button>
+            <span class="upload-status"></span>
+          </div>
+        </div>
+      </div>
+      <div class="entry-actions">
+        <span class="save-hint">Tersimpan ✓</span>
+        <button class="save-entry ghost">Simpan</button>
+      </div>
+    </div>`;
+  }).join("");
+
+  wrap.querySelectorAll('.entry-card').forEach(card=>{
+    const pid = card.dataset.p;
+    const nama = card.dataset.name;
+    const badge = card.querySelector('.badge');
+    const statusSel = card.querySelector('.f-status');
+    statusSel.addEventListener('change', ()=>{
+      const sc = statusClass(statusSel.value);
+      card.className = `entry-card status-${sc}`;
+      badge.className = `badge ${sc}`;
+      badge.textContent = statusSel.value;
+    });
+    card.querySelector('.save-entry').addEventListener('click', async ()=>{
+      const entry = {
+        surah: card.querySelector('.f-surah').value,
+        status: statusSel.value,
+        link: card.querySelector('.f-link').value,
+        keterangan: card.querySelector('.f-ket').value,
+      };
+      await saveEntry(pid, nama, entry);
+      weekEntries[pid] = entry;
+      const hint = card.querySelector('.save-hint');
+      hint.classList.add('show');
+      setTimeout(()=>hint.classList.remove('show'), 1600);
+    });
+    const uploadBtn = card.querySelector('.btn-upload');
+    if(uploadBtn){
+      uploadBtn.addEventListener('click', async ()=>{
+        const fileInput = card.querySelector('.f-file');
+        const statusEl = card.querySelector('.upload-status');
+        if(!fileInput.files[0]){ statusEl.textContent = 'Pilih file dulu.'; return; }
+        if(!accessToken){ statusEl.textContent = 'Login dulu.'; return; }
+        statusEl.textContent = 'Mengunggah…';
+        uploadBtn.disabled = true;
+        try{
+          const w = currentWeekObj();
+          const filename = `${nama} - ${w.label} - ${fileInput.files[0].name}`;
+          const result = await uploadToDrive(fileInput.files[0], filename, config.folderId, accessToken);
+          const link = `https://drive.google.com/file/d/${result.id}/view`;
+          card.querySelector('.f-link').value = link;
+          statusEl.textContent = 'Terunggah ✓';
+        }catch(err){
+          console.error(err);
+          statusEl.textContent = 'Gagal unggah.';
+        }
+        uploadBtn.disabled = false;
+      });
+    }
+  });
+}
+
+function arrayBufferToBase64(buffer){
+  let binary=''; const bytes = new Uint8Array(buffer);
+  for(let i=0;i<bytes.byteLength;i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary);
+}
+
+async function uploadToDrive(file, filename, folderId, token){
+  const metadata = { name: filename, parents: folderId ? [folderId] : [] };
+  const boundary = '-------314159265358979323846';
+  const delimiter = "\r\n--" + boundary + "\r\n";
+  const closeDelim = "\r\n--" + boundary + "--";
+  const base64Data = arrayBufferToBase64(await file.arrayBuffer());
+  const body =
+    delimiter + 'Content-Type: application/json; charset=UTF-8\r\n\r\n' + JSON.stringify(metadata) +
+    delimiter + 'Content-Type: ' + (file.type||'application/octet-stream') + '\r\nContent-Transfer-Encoding: base64\r\n\r\n' + base64Data +
+    closeDelim;
+  const res = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,webViewLink', {
+    method:'POST',
+    headers:{ 'Authorization':'Bearer '+token, 'Content-Type':'multipart/related; boundary="'+boundary+'"' },
+    body
+  });
+  if(!res.ok){ const t = await res.text(); throw new Error('Upload gagal: '+res.status+' '+t); }
+  return res.json();
+}
+
+function ensureTokenClient(){
+  if(!tokenClient && config.clientId && window.google && google.accounts){
+    tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: config.clientId,
+      scope: 'https://www.googleapis.com/auth/drive.file',
+      callback: (resp)=>{
+        if(resp.error){ document.getElementById('loginStatus').textContent = 'Login gagal: '+resp.error; return; }
+        accessToken = resp.access_token;
+        document.getElementById('loginStatus').textContent = 'Sudah login ✓ — upload aktif';
+        document.getElementById('loginBtn').textContent = '🔐 Login ulang';
+        renderSpread();
+      }
+    });
+  }
+}
+
+async function loadConfig(){
+  const saved = await storageGet('integration-config', true);
+  if(saved) config = { ...config, ...saved };
+  document.getElementById('cfgAppsScript').value = config.appsScriptUrl || '';
+  document.getElementById('cfgClientId').value = config.clientId || '';
+  document.getElementById('cfgFolderId').value = config.folderId || '';
+}
+
+async function init(){
+  populateSurahSelect(document.getElementById('newSurah'));
+  renderCountdown();
+  await loadConfig();
+
+  participants = await storageGet('participants', true);
+  if(!participants){ participants = DEFAULT_PARTICIPANTS; await storageSet('participants', participants, true); }
+  renderProgress();
+
+  weeks = await storageGet('weeks', true) || [];
+  if(weeks.length===0){
+    const w = {id:'w_'+Date.now(), label: saturdaySundayLabel(0)};
+    weeks = [w];
+    await storageSet('weeks', weeks, true);
+  }
+  currentWeekId = weeks[weeks.length-1].id;
+  renderWeekSelect();
+  await loadWeekEntries(currentWeekId);
+  renderSpread();
+
+  document.getElementById('addParticipant').addEventListener('click', async ()=>{
+    const name = document.getElementById('newName').value.trim();
+    if(!name) return;
+    const sel = document.getElementById('newSurah').value;
+    participants.push({id:'p_'+Date.now(), name, currentSurahIndex: sel===''?null:parseInt(sel,10)});
+    document.getElementById('newName').value='';
+    renderProgress(); renderSpread();
+    await storageSet('participants', participants, true);
+  });
+
+  document.getElementById('addWeek').addEventListener('click', async ()=>{
+    const w = {id:'w_'+Date.now(), label: saturdaySundayLabel(weeks.length)};
+    weeks.push(w); currentWeekId = w.id;
+    await storageSet('weeks', weeks, true);
+    renderWeekSelect();
+    await loadWeekEntries(currentWeekId);
+    renderSpread();
+  });
+
+  document.getElementById('weekSelect').addEventListener('change', async (e)=>{
+    currentWeekId = e.target.value;
+    document.getElementById('spread').classList.add('loading');
+    document.getElementById('spread').textContent = 'Memuat ceklist…';
+    await loadWeekEntries(currentWeekId);
+    renderSpread();
+  });
+
+  document.getElementById('loginBtn').addEventListener('click', ()=>{
+    if(!config.clientId){ alert('Client ID belum diatur. Buka panel ⚙ Pengaturan di bawah dan isi Google OAuth Client ID.'); return; }
+    ensureTokenClient();
+    if(tokenClient) tokenClient.requestAccessToken();
+    else alert('Google Identity Services belum siap, coba lagi sesaat lagi.');
+  });
+
+  document.getElementById('saveConfig').addEventListener('click', async ()=>{
+    config = {
+      appsScriptUrl: document.getElementById('cfgAppsScript').value.trim(),
+      clientId: document.getElementById('cfgClientId').value.trim(),
+      folderId: document.getElementById('cfgFolderId').value.trim(),
+    };
+    await storageSet('integration-config', config, true);
+    tokenClient = null;
+    await loadWeekEntries(currentWeekId);
+    renderSpread();
+    alert('Pengaturan disimpan.');
+  });
+}
+
+init();
+</script>
+</body>
+</html>
